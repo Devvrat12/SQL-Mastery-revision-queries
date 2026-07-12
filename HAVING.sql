@@ -16,3 +16,12 @@ FROM employee_salary
 GROUP BY occupation
 HAVING SUM(salary) > 20000;
 
+SELECT * 
+FROM employee_demographics;
+
+SELECT gender, SUM(age)
+FROM employee_demographics
+GROUP BY gender
+HAVING SUM(age) > 155
+;
+
