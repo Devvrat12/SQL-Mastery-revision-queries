@@ -41,3 +41,17 @@ FROM employee_salary;
 
 SELECT LEFT(first_name, 3)
 FROM employee_demographics;
+
+SELECT first_name, SUBSTRING(first_name, 3, 6)
+FROM employee_demographics;
+
+SELECT first_name, SUBSTRING(first_name, 3, 2)
+FROM employee_demographics;
+
+SELECT CONCAT(first_name, " ", last_name) AS full_name, SUBSTRING(birth_date, 6, 2) AS Birth_month
+FROM employee_demographics;
+
+-- MONTHNAME(STR_TO_DATE('07', '%m'))
+-- We can directly use the birth_date in the MONTHNAME() FUNCTION.
+SELECT CONCAT(first_name, " ", last_name) AS full_name, MONTHNAME(birth_date) AS Month_name
+FROM employee_demographics;
