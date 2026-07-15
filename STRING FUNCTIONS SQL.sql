@@ -55,3 +55,13 @@ FROM employee_demographics;
 -- We can directly use the birth_date in the MONTHNAME() FUNCTION.
 SELECT CONCAT(first_name, " ", last_name) AS full_name, MONTHNAME(birth_date) AS Month_name
 FROM employee_demographics;
+
+
+SELECT first_name , REPLACE(first_name, 'a', 'z')
+FROM employee_demographics;
+
+SELECT first_name , REPLACE(first_name, 'A', 'Z')
+FROM employee_demographics;
+
+SELECT first_name, LOCATE('A', first_name)
+FROM employee_demographics;
