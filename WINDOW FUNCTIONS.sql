@@ -66,3 +66,35 @@ FROM employee_salary;
 
 -- LAG() and LEAD() are window functions used to access data from the previous or next row without using a self-join. 
 -- They are mainly used for comparisons, trend analysis, and time-series calculations.
+
+
+-- Addition of salary on gender basis
+SELECT dem.first_name, dem.last_name, gender, salary, 
+SUM(SALARY) OVER(PARTITION BY gender) AS Rolling_Total
+FROM employee_demographics dem
+JOIN employee_salary sal
+	ON dem.employee_id= sal.employee_id;
+
+-- Addition of salary on id basis
+SELECT dem.first_name, dem.last_name, gender, salary, 
+SUM(SALARY) OVER(PARTITION BY gender ORDER BY dem.employee_id) AS Rolling_Total
+FROM employee_demographics dem
+JOIN employee_salary sal
+	ON dem.employee_id= sal.employee_id;
+    
+    
+SELECT gender, 
+AVG(salary)
+OVER(PARTITION BY gender) AS avg_sal
+FROM employee_demographics
+JOIN employee_salary
+	ON employee_demographics.employee_id = employee_salary.employee_id;
+    
+SELECT dem.first_name, dem.last_name, gender, salary,
+ROW_NUMBER() OVER(PARTITION BY gender) AS row_num
+FROM employee_demographics dem
+JOIN employee_salary sal
+	ON dem.employee_id = sal.employee_id;
+
+    
+    
